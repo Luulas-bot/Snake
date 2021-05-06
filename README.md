@@ -2,7 +2,7 @@
 
 Snake is a well known game. It consists on moving the snake around the map, getting it to it more food and to grow longer. The longer you grow, the harder it gets.
 
-------------------------------------------------------------------TRY IT OUT-----------------------------------------------------------------
+------------------------------------------------------TRY IT OUT-----------------------------------------------------------------
 
 How to download and play the game?
 
@@ -20,7 +20,7 @@ VERY IMPORTANT: USE THE "EXTRACT HERE" BUTTON AND ONLY THAT ONE. IF NOT IT WILL 
 
 This is my second game, and it was more challenging that the other one I made in many ways.
 
-ERRORS
+-------------------------------------------------------ERRORS------------------------------------------------------------------
 
 It has two main errors that I have not figured out how to solve yet, but anyways I wanted to upload the game and, if the energy comes to me, eventually I will solve those errors.
 One of these two doesn't really matter, the other one is more important. The error consists on the points (apples). These sometimes generates on the snake and not on the empty space. If you have a solution to this problem, contact me. Thank you
