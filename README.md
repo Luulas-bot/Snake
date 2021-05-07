@@ -20,7 +20,10 @@ VERY IMPORTANT: USE THE "EXTRACT HERE" BUTTON AND ONLY THAT ONE. IF NOT IT WILL 
 
 This is my second game, and it was more challenging that the other one I made in many ways.
 
--------------------------------------------------------ERRORS------------------------------------------------------------------
+-------------------------------------------------------ERRORS & BUGS---------------------------------------------------------------
 
-It has two main errors that I have not figured out how to solve yet, but anyways I wanted to upload the game and, if the energy comes to me, eventually I will solve those errors.
-One of these two doesn't really matter, the other one is more important. The error consists on the points (apples). These sometimes generates on the snake and not on the empty space. If you have a solution to this problem, contact me. Thank you
+It has one main error and one main bug. The error will not be specified here, find it out by yourself if you can. The bug occurs randomly and I can't figure out what triggers it. It's about the generation of the apples. Sometimes the function that creates the apples decides it's time to create more than 1 apple, so it creates two apples that keep spawning the rest of the game until you lose.
+
+-------------------------------------------------------INCOMING UPDATES---------------------------------------------------------------
+
+In the future maybe I will dow a score system and a three or four level of difficulty system.
