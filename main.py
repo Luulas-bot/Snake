@@ -7,7 +7,8 @@ import time
 # Importe de las constantes globales
 from constants import (row, col, tail_list, screen, background, titulo_snake, press_play_button,
 play_button, press_quit_button, quit_button, clock, point_list_count, point_list, width, WHITE, height,
-x_pos_point_list, y_pos_point_list, time_limit, pause, play_game_background, sound_button, canceled_sound_button) 
+x_pos_point_list, y_pos_point_list, time_limit, pause, play_game_background, sound_button, canceled_sound_button,
+pressed_sound_button) 
 
 # Inicializacion de pygame
 pygame.init()
@@ -15,6 +16,7 @@ pygame.init()
 # Musica de fondo
 pygame.mixer.music.load("chiptune_4.mp3")
 pygame.mixer.music.play()
+pygame.mixer.music.set_volume(0.03)
 
 # Clase de la snake
 class Snake(pygame.sprite.Sprite):
@@ -29,15 +31,11 @@ class Snake(pygame.sprite.Sprite):
         self.initial_pos = initial_pos
         self.rect.x = self.initial_pos[0]
         self.rect.y = self.initial_pos[1]
-        
-        self.coords = (self.rect.x, self.rect.y)
 
     # Se actualiza todo el tiempo y se sobreescribe en una variable la posición previa de la snake    
     def update(self):
         self.previous_x = self.rect.x
         self.previous_y = self.rect.y
-        
-        self.coords = (self.rect.x / row, self.rect.y / col)
         
 # Clase de la cola
 class Tail(pygame.sprite.Sprite):
@@ -52,8 +50,6 @@ class Tail(pygame.sprite.Sprite):
         self.previous_x = self.rect.x + 1
         self.previous_y = self.rect.y
         
-        self.coords = (self.rect.x, self.rect.y)
-        
     # Se toman los valores de la posición actual de la cola y se escriben en una variable además
     # de actualizar los valores en sí mismos de la posición de la cola
     def update_with_position(self, new_x, new_y):
@@ -62,8 +58,6 @@ class Tail(pygame.sprite.Sprite):
 
         self.rect.x = new_x
         self.rect.y = new_y
-        
-        self.coords = (self.rect.x / row, self.rect.y / col)
           
 # Clase de los puntos que aparecen en pantalla que tiene que devorar la snake
 class Points(pygame.sprite.Sprite):
@@ -73,7 +67,6 @@ class Points(pygame.sprite.Sprite):
         self.image = pygame.image.load("Point.png")
         self.rect = self.image.get_rect()
         
-        self.coords = (self.rect.x, self.rect.y)
     # Define la posición de los puntos
     def pos(self, x, y):    
         self.rect.x = x * row
@@ -91,16 +84,11 @@ for tail in all_tails:
     all_sprites_list.add(tail)
 tail_list_count = pygame.sprite.Group()
 tail_list_count.add(tail)
-    
-# Crea una cola y mas importante define a la variable 'new_tail'
-last_tail = all_tails[-1]
-new_tail = Tail(last_tail.previous_x, last_tail.previous_y, [first_tail.rect.x, first_tail.rect.y]) 
-all_tails.append(new_tail)
-all_sprites_list.add(new_tail)
-tails_hit_list.add(new_tail)
 
 # Pantalla del menú principal
 def main_menu():
+    
+    global pressed_sound_button
     
     # Variables de la funcion
     pygame.mouse.set_visible(1)
@@ -114,7 +102,6 @@ def main_menu():
     # Variable del boton presionado. Define si esta presionado o no.
     pressed_button = False
     pressed_quit_button = False
-    pressed_sound_button = False
     
     # Bucle principal de la funcion
     while not done:
@@ -189,14 +176,8 @@ def play_game():
     font = pygame.font.SysFont("Comic", 25, bold = True)
     text1 = font.render("PRESS 'P' TO PAUSE AND UNPAUSE", True, WHITE)
     
-    # Crea un punto y mas importante define a la variable 'point'
-    pos_point_x = random.choice(x_pos_point_list) 
-    pos_point_y = random.choice(y_pos_point_list)    
-    point = Points()
-    point.pos(pos_point_x, pos_point_y)
-    all_sprites_list.add(point)
-    point_list.add(point)
-    point_list_count.append(1)
+    if len(point_list_count) == 0:    
+        create_point()
         
     # Variable que setea el timer a 0 para contar el tiempo desde 0.
     start_time = time.time()
@@ -339,17 +320,21 @@ def add_new_tail():
     all_tails.append(new_tail)
     all_sprites_list.add(new_tail)
     tails_hit_list.add(new_tail)
-    
+
 # Funcion que crea los puntos y los añade a la lista de todos los sprites
 def create_point():
     global first_tail
     global new_tail
     
-    pos_point_x = float(random.choice(x_pos_point_list)) 
-    pos_point_y = float(random.choice(y_pos_point_list))
-    if (pos_point_x, pos_point_y) != snake.coords and (pos_point_x, pos_point_y) != first_tail.coords and (pos_point_x, pos_point_y) != new_tail.coords:
-        point = Points()
-        point.pos(pos_point_x, pos_point_y)
+    pos_point_x = random.choice(x_pos_point_list) 
+    pos_point_y = random.choice(y_pos_point_list)
+    point = Points()
+    point.pos(pos_point_x, pos_point_y)
+    point_collide_list_tails = pygame.sprite.spritecollide(point, tails_hit_list, False)
+    point_collide_list_snake = pygame.sprite.spritecollide(snake, point_list, False)
+    if point_collide_list_tails or point_collide_list_snake == True:
+        create_point()
+    else:
         all_sprites_list.add(point)
         point_list.add(point)
         point_list_count.append(1)
@@ -387,6 +372,7 @@ def game_over():
                     all_sprites_list.add(snake)
                     all_sprites_list.add(first_tail)
                     all_tails.append(first_tail)
+                    point_list_count.clear()
                     play_game()
             
             # Si se aprieta la 'q' se llama a la función 'main_menu'
@@ -398,6 +384,7 @@ def game_over():
                     all_sprites_list.add(snake)
                     all_sprites_list.add(first_tail)
                     all_tails.append(first_tail)
+                    point_list_count.clear()
                     main_menu()
         
         # Se dibujan los textos por pantalla
@@ -427,3 +414,4 @@ def pause_menu():
         clock.tick(30) 
 
 main_menu()
+
