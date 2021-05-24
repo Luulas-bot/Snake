@@ -2,8 +2,23 @@
 
 Snake is a well known game. It consists on moving the snake around the map, getting it to it more food and to grow longer. The longer you grow, the harder it gets.
 
-------------------------------------------------------TRY IT OUT-----------------------------------------------------------------
 
+## Try it out
+
+
+### For all users
+
+1. Clone the project
+2. Create an enviroment and then install the requirements using the requirements fille: `pip install -r requirements.txt`
+3. the run the game by using `python main.py`
+
+```python
+import numpy as np
+ 
+a = np.random.rand(10)
+```
+
+### For Windows users
 How to download and play the game?
 
 1- You have to download the whole folder. To do this, click on the green button that have a "down arrow" + "code". After that, click on "Download ZIP".
@@ -20,10 +35,11 @@ VERY IMPORTANT: USE THE "EXTRACT HERE" BUTTON AND ONLY THAT ONE. IF NOT IT WILL 
 
 This is my second game, and it was more challenging that the other one I made in many ways.
 
--------------------------------------------------------ERRORS & BUGS---------------------------------------------------------------
+
+## ERRORS & BUGS
 
 It has one main error and one main bug. The error will not be specified here, find it out by yourself if you can. The bug occurs randomly and I can't figure out what triggers it. It's about the generation of the apples. Sometimes the function that creates the apples decides it's time to create more than 1 apple, so it creates two apples that keep spawning the rest of the game until you lose.
 
--------------------------------------------------------INCOMING UPDATES---------------------------------------------------------------
+## INCOMING UPDATES
 
 In the future maybe I will dow a score system and a three or four level of difficulty system.
