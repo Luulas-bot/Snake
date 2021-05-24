@@ -14,7 +14,7 @@ pressed_sound_button)
 pygame.init()
 
 # Musica de fondo
-pygame.mixer.music.load("chiptune_4.mp3")
+pygame.mixer.music.load("audios/chiptune_4.mp3")
 pygame.mixer.music.play()
 pygame.mixer.music.set_volume(0.03)
 
