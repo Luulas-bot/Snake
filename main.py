@@ -23,7 +23,7 @@ class Snake(pygame.sprite.Sprite):
     
     def __init__(self, initial_pos):
         super().__init__()
-        self.image = pygame.image.load("head_snake.png")
+        self.image = pygame.image.load("images/head_snake.png")
         self.rect = self.image.get_rect()
         
         self.previous_position_x = self.rect.x + 1 * row
@@ -42,7 +42,7 @@ class Tail(pygame.sprite.Sprite):
     
     def __init__(self, x, y, initial_position):
         super().__init__()
-        self.image = pygame.image.load("body_snake.png")
+        self.image = pygame.image.load("images/body_snake.png")
         self.rect = self.image.get_rect()
         self.rect.x = initial_position[0]
         self.rect.y = initial_position[1]
@@ -64,7 +64,7 @@ class Points(pygame.sprite.Sprite):
     
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("Point.png")
+        self.image = pygame.image.load("images/Point.png")
         self.rect = self.image.get_rect()
         
     # Define la posición de los puntos
@@ -196,7 +196,7 @@ def play_game():
                         snake_left_bool = False
                         snake_right_bool = False
                         snake_down_bool = False
-                        snake.image = pygame.image.load("head_snake_up.png")
+                        snake.image = pygame.image.load("images/head_snake_up.png")
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     if snake_up_bool == False:
@@ -204,7 +204,7 @@ def play_game():
                         snake_left_bool = False
                         snake_right_bool = False
                         snake_down_bool = True
-                        snake.image = pygame.image.load("head_snake_down.png")
+                        snake.image = pygame.image.load("images/head_snake_down.png")
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     if snake_right_bool == False:    
@@ -212,7 +212,7 @@ def play_game():
                         snake_left_bool = True
                         snake_right_bool = False
                         snake_down_bool = False
-                        snake.image = pygame.image.load("head_snake.png")
+                        snake.image = pygame.image.load("images/head_snake.png")
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                      if snake_left_bool == False:   
@@ -220,7 +220,7 @@ def play_game():
                         snake_left_bool = False
                         snake_right_bool = True
                         snake_down_bool = False
-                        snake.image = pygame.image.load("head_snake_right.png")
+                        snake.image = pygame.image.load("images/head_snake_right.png")
             
             # Registra si se presiona la 'p' para entrar en la función de pausado
             if event.type == pygame.KEYDOWN:
@@ -353,7 +353,7 @@ def game_over():
     text3 = font3.render("PRESS 'Q' TO QUIT TO MAIN MENU", True, WHITE)
     
     # Resetea la orientacion de la cabeza hacia la izquierda
-    snake.image = pygame.image.load("head_snake.png")
+    snake.image = pygame.image.load("images/head_snake.png")
     
     game_over = True
     
