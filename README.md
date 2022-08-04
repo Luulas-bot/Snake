@@ -10,7 +10,7 @@ This is the typcal game of *snake*, wich all of us know pretty well. I decided t
 ## The language
 I programmed everything in `python` because it's what i learned. I used `pygame` as a module to create the game, wich is a great module for games. 
 
-## Can you download this program in your computer? (Not right now, soon this option will be aviable)
+## Can you download this program in your computer?
 The answer is yes, you can. What you have to do is the following:
 - First you gotta create an envoirment with all the requirments. You can find these in the `requirements.txt` file. If you have Python already installed in your computer, then forget about this step.
 - Then, once the env is setted up, you have to download the scripts + the images. You can do this using the green button on the top right part, which says **code**.
