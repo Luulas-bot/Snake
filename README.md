@@ -20,6 +20,6 @@ The answer is yes, you can. What you have to do is the following:
 
 ## Some things you perhaps wanna know
 This is my second project all done by myself, so I know it's not written or created in the best way possible (spreading the code in different files, using a lot more classes, etc). Anyways I enjoyed doing it and I learned a lot of stuff that will surely show off in the next project.
-All the graphical elements are also done by me using photoshop. If you don't wanna lose time in those things, just download the images from the repo.
+All the graphical elements are also done by myself using photoshop. If you don't wanna lose time in those things, just download the images from the repo.
 
 # Enjoy!
